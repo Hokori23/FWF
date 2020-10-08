@@ -180,9 +180,15 @@ export default ({ title = '', info = {}, detailURL }) => {
   info = translateKeys(info);
   Object.keys(info).forEach((key) => {
     let value = isDef(info[key]) ? info[key] : '无';
-    if (key === '是否实习') {
-      value = value ? '申请实习' : '申请面试';
-    }
+    const gradeDictionary = {
+      1: '大一',
+      2: '大二'
+    };
+    const valueFormatter = {
+      是否实习: (value) => (value ? '申请实习' : '申请面试'),
+      年级: (value) => gradeDictionary[value]
+    };
+    value = valueFormatter[key] ? valueFormatter[key](value) : value;
     html += `
                                     <li><b>${key}: </b>${String(value)}</li>`;
   });
@@ -192,7 +198,6 @@ export default ({ title = '', info = {}, detailURL }) => {
                             <footer class="mail__footer">
     `;
   if (isDef(detailURL)) {
-    console.log('detailURL', detailURL);
     html += `
                                 <a href="${detailURL}">点击此处查看申请信息列表</a>`;
   }

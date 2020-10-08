@@ -116,6 +116,17 @@
           multiLine: true
         });
       },
+      confirmDialog(message, title = null, cb) {
+        this.$q
+          .dialog({
+            title,
+            message,
+            ok: '确定'
+          })
+          .onDismiss(() => {
+            cb && cb();
+          });
+      },
       /**
        * @param { string } tabKey
        * @description tabKey : [ 'internship', 'regular' ]
@@ -133,14 +144,13 @@
               const res = await this.apply(applier);
               const { code, message } = res;
               if (!code) {
-                this.$q
-                  .dialog({
-                    title: '提交成功',
-                    message: '申请结果将会以邮件形式通知，请耐心等待喔~'
-                  })
-                  .onDismiss(() => {
-                    vm.hide();
-                  });
+                this.confirmDialog(
+                  '申请结果将会以邮件形式通知，请耐心等待喔~',
+                  '提交成功',
+                  vm.hide
+                );
+              } else if (code == 98) {
+                this.confirmDialog(message, '不要急噢', vm.hide);
               } else {
                 this.notify(message, 1);
               }

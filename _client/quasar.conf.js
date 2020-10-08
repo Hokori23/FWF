@@ -72,8 +72,7 @@ module.exports = function(/* ctx */) {
       open: true, // opens browser window automatically
       proxy: {
         '/api': {
-          // target: 'https://api.hokori.online/fwf',
-          target: "http://localhost:8003/fwf",
+          target: "http://localhost:8003/api",
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''
