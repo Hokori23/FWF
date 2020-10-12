@@ -1,4 +1,5 @@
 import EXPRESS from 'express';
+import moment from 'moment';
 
 import { ApplierService as Service } from '@service';
 import { Applier } from '@vo';
@@ -11,6 +12,8 @@ const ROUTER = EXPRESS.Router();
  * @param { Applier } applier
  */
 ROUTER.post('/apply', async (req, res, next) => {
+
+
   const applier = Applier.build(req.body);
   if (
     !checkIntegrity(applier, [
@@ -19,6 +22,7 @@ ROUTER.post('/apply', async (req, res, next) => {
       'school',
       'major',
       'grade',
+      'position',
       'isInternship',
       'email',
       'qq'
@@ -50,6 +54,8 @@ ROUTER.post('/edit', async (req, res, next) => {
       'university',
       'school',
       'major',
+      'grade',
+      'position',
       'isInternship',
       'isPermitted',
       'email',

@@ -12,6 +12,7 @@ interface ApplyAttributes {
   qq: string;
   bio: string | null;
   site: string | null;
+  position: string;
   isInternship: boolean;
   isPermitted: number;
   createdAt: Date;
@@ -29,6 +30,7 @@ class Applier extends Model implements ApplyAttributes {
   public qq!: string;
   public bio!: string | null;
   public site!: string | null;
+  public position!: string;
   public isInternship!: boolean;
   public isPermitted!: number;
   public readonly createdAt!: Date;
@@ -157,6 +159,10 @@ Applier.init(
       //   isUrl: true
       // },
       comment: '个人网站'
+    },
+    position: {
+      type: DataTypes.STRING(50),
+      comment: '学习方向'
     },
     isInternship: {
       type: DataTypes.BOOLEAN,

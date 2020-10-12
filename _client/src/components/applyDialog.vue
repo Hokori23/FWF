@@ -80,6 +80,26 @@
             :rules="[(val) => !!val || '年级不能为空']"
             lazy-rules
           />
+          <q-select
+            v-model="applier.position"
+            :options="positions"
+            :outlined="$q.screen.gt.xs"
+            :dense="$q.screen.lt.md"
+            :label="`${
+              this.tabKey === 'internship' ? '学习方向' : '面试方向'
+            }*`"
+            :class="[$q.screen.lt.md ? 'q-mb-xs' : 'q-mb-md']"
+            :transition-show="transitionShow"
+            :transition-hide="transitionHide"
+            :rules="[
+              (val) =>
+                !!val ||
+                `${
+                  this.tabKey === 'internship' ? '学习方向' : '面试方向'
+                }不能为空`
+            ]"
+            lazy-rules
+          />
           <q-input
             clearable
             v-model="applier.email"
@@ -178,6 +198,7 @@
 <script>
   import schools from 'assets/schools';
   export default {
+    name: 'applayDialog',
     props: {
       // ...你自定义的属性
       tabKey: {
@@ -208,6 +229,13 @@
           ?.school_and_majoritys.filter((school_and_majority) => {
             return school_and_majority.school === this.applier.school;
           })[0]?.majority;
+      },
+      positions() {
+        const positionObj = {
+          internship: ['前端', '后端', '混合开发移动端'],
+          regular: ['前端', '后端', '混合开发移动端', '运营或策划']
+        };
+        return positionObj[this.tabKey];
       }
     },
     watch: {
@@ -235,43 +263,8 @@
           qq: '',
           bio: '',
           site: '',
+          position: '',
           isInternship: this.tabKey === 'internship'
-        },
-        validation: {
-          name: {
-            errorMsg: '姓名长度应为2至10字符',
-            required: true
-          },
-          university: {
-            errorMsg: '大学或院校不能为空',
-            required: true
-          },
-          school: {
-            errorMsg: '学院不能为空',
-            required: true
-          },
-          major: {
-            errorMsg: '专业不能为空',
-            required: true
-          },
-          grade: {
-            errorMsg: '年级不能为空',
-            required: true
-          },
-          email: {
-            errorMsg: '邮箱不能为空',
-            required: true
-          },
-          qq: {
-            errorMsg: 'QQ不能为空',
-            required: true
-          },
-          site: {
-            errorMsg: '请输入正确网站格式'
-          },
-          isInternShip: {
-            required: true
-          }
         },
         grades: [
           {
@@ -283,7 +276,6 @@
             label: '大二'
           }
         ],
-
         transitionShow: 'flip-up',
         transitionHide: 'flip-down'
       };

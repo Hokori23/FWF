@@ -1,6 +1,5 @@
-import { Applier } from '@vo';
 import moment from 'moment';
-import juice from 'juice';
+import juice from 'juice'; // 转换成内联样式
 
 const isDef = (v) => {
   return v !== undefined && v !== null;
@@ -26,6 +25,7 @@ const translateKeys = (applier) => {
     qq: 'QQ',
     bio: '简介',
     site: '个人网站',
+    position: '岗位',
     isInternship: '是否实习'
   };
   const newObj = {};

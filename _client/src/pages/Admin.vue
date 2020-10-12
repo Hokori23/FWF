@@ -117,12 +117,14 @@
     qq: 'QQ',
     bio: '简介',
     site: '个人网站',
+    position: '岗位',
     isInternship: '是否实习',
     isPermitted: '状态',
     createdAt: '申请时间',
     updatedAt: '最后修改时间'
   };
   export default {
+    name: 'Admin',
     methods: {
       ...mapActions({
         retrieve: 'api/retrieve',
@@ -199,7 +201,7 @@
                       };
                       return status[val];
                     },
-                    isInternship: (val) => (val == 0 ? '实习' : '面试'),
+                    isInternship: (val) => (val === 0 ? '实习' : '面试'),
                     grade: (val) => {
                       const grade = {
                         1: '大一',
