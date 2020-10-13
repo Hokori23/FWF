@@ -97,9 +97,33 @@ const config = {
       // 时区
       timezone: '+08:00'
     }
+  },
+
+  /**
+   *
+   * 邮箱设置
+   *
+   */
+  mailerConfig: {
+    secure: true,
+    pool: true,
+    maxConnections: 10,
+    maxTryCount: 3,
+    host: 'smtp.163.com',
+    port: 465,
+    subject: 'FWF工作室申请邮件',
+    auth: {
+      user: 'wefound404_fwf@163.com',
+      pass: ''
+    },
+    from: {
+      name: 'FWF工作室',
+      address: 'wefound404_fwf@163.com'
+    },
+    html: null
   }
 };
-const { serverConfig, blogConfig } = config;
+const { serverConfig } = config;
 
 // 同义化配置
 if (serverConfig.baseURL === '/') {

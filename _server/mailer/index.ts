@@ -1,27 +1,11 @@
 // Dependencies
 import moment from 'moment';
 import NODE_MAILER from 'nodemailer';
+import { mailerConfig } from '@config';
 moment.locale('zh-cn');
 
 // 通用设置
-const MAILER_OPTIONS = {
-  secure: true,
-  pool: true,
-  maxConnections: 10,
-  maxTryCount: 3,
-  host: 'smtp.qq.com',
-  port: 465,
-  subject: 'FWF工作室申请邮件',
-  auth: {
-    user: 'hokori23@qq.com',
-    pass: ''
-  },
-  from: {
-    name: 'FWF工作室',
-    address: 'hokori23@qq.com'
-  },
-  html: null
-};
+const MAILER_OPTIONS = mailerConfig;
 
 // 接收邮件的邮箱列表
 const ACCEPTERS = [
