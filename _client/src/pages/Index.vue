@@ -47,7 +47,47 @@
             $q.screen.gt.xs ? 'q-py-xl' : 'q-py-lg'
           ]"
         >
-          <div v-html="$markdownIt.render(intro[tabKey])" />
+          <!-- markdown content -->
+          <div
+            v-if="tabKey !== 'intro'"
+            v-html="$markdownIt.render(intro[tabKey])"
+          />
+          <!-- intro detail -->
+          <div v-else>
+            <span class="text-h4">Why FWF？</span>
+            <q-img
+              src="~assets/00FWFBlue-WhiteBG.png"
+              contain
+              class="q-mt-md q-mb-lg"
+              :style="`height:${$q.screen.gt.md ? '100px' : '70px'};`"
+            />
+            <p>
+              FWF 是一个专注于web技术的工作室( 非院校社团 )
+              ，致力于打造良好的技术交流氛围。
+            </p>
+            <p>
+              在这里，你可以与志同道合的人一起学习技术、开发项目、获得提升。
+            </p>
+            <br />
+            <h5 class="text-h5 q-mb-lg">关于我们</h5>
+
+            <ImgSlider />
+            <div
+              :class="[
+                'text-caption',
+                'row',
+                'justify-end',
+                'text-grey',
+                $q.screen.gt.md ? 'q-mx-md q-mt-md q-mb-xl' : 'q-mx-sm q-mt-sm q-mb-lg'
+              ]"
+            >
+              作品顺序随机打乱不分先后
+            </div>
+            <p>
+              FWF
+              是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
+            </p>
+          </div>
           <div
             :class="[
               'row',
@@ -67,7 +107,7 @@
               color="primary"
               label="点击申请面试"
               :class="[$q.screen.gt.xs ? 'q-my-md' : 'q-mt-xs']"
-              v-if="tabKey === 'regular'"
+              v-else-if="tabKey === 'regular'"
               @click="applyPopup(tabKey)"
             />
           </div>
@@ -80,9 +120,13 @@
 <script>
   import intro from 'assets/fwf_intro';
   import ApplyDialog from 'components/applyDialog';
+  import ImgSlider from 'components/imgSlider/index.vue';
   import { mapActions } from 'vuex';
   export default {
-    name: 'PageIndex',
+    name: 'Index',
+    components: {
+      ImgSlider
+    },
     computed: {
       tabKeys() {
         const keys = Object.keys(this.intro).filter((key) => {
@@ -104,7 +148,8 @@
         const dictionary = {
           intro: 'FWF简介',
           internship: '实习成员纳新',
-          regular: '正式成员纳新'
+          regular: '正式成员纳新',
+          about_us: '关于我们'
         };
         return dictionary[key];
       },
