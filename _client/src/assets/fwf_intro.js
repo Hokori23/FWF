@@ -5,9 +5,8 @@ FWF 是一个专注于web技术的工作室( 非院校社团 ) ，致力于打�
 
 在这里，你可以与志同道合的人一起学习技术、开发项目、获得提升。
 
-FWF 是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。`,
+<br />`,
   internship: `##### 实习成员纳新
-
 
   **1、面向对象**
 
@@ -15,33 +14,34 @@ FWF 是一个初步成立的大学生工作室，我们有着很好的项目点�
 
   **2、纳新方向及要求**
 
-  - 前端（招收10人）
+
+  - 前端（招收8人）
 
     - 对技术有着强烈的热爱，有上进心与责任心，有着强烈的竞争意识。有前端技术基础者优先
 
-  - 后端（招收15人）
+  - 后端（招收12人）
 
     - 热爱后端技术，有后端开发经验者优先
 
-  - 移动端（招收5人）
+  - 运维（招收5人）
 
-    - 有一定的编程经验。有前端开发经验或者Dart语言基础亦或Flutter开发经验者优先
+    - 热爱网络知识，对Linux感兴趣，有相关经验者优先
 
-  **3、关于组织**
+  **3、关于纳新、面试及转正**
 
-   **没基础？没接触过编程？**
+  - **没基础？没接触过编程？**
 
-   **没关系，只要你热爱技术、自律并愿意为技术付出时间，我们欢迎你 ~**
+  - **没关系，只要你热爱技术、自律并愿意为技术付出时间，我们欢迎你 ~**
 
-  ​	**成为实习成员前，会有两周时间自由学习，随后进行简单面试，主要考察自学能力和主观能动性，让我们看到你的潜力！**
+  - **成为实习成员前，会有两周时间自由学习，随后进行简单面试，主要考察自学能力和主观能动性，让我们看到你的潜力！**
 
-  ​	**通过面试后，有三个月时间跟随FWF前辈学习相关方向的技术。三个月后进行转正考核**
+  - **通过面试后，有三个月时间跟随FWF前辈学习相关方向的技术。随后进行转正考核**
 
-  ​	前端目标转正人数：5人
+ >	前端目标转正人数：5人
 
-  ​	后端目标转正人数：8人
+ > 后端目标转正人数：8人
 
-  ​	移动端目标转正人数：3人
+ > 运维目标转正人数：3人
 
   **最终转正人数会根据实际招收人数有所调整**
 
@@ -53,9 +53,49 @@ FWF 是一个初步成立的大学生工作室，我们有着很好的项目点�
 
   **1、面向对象**
 
-  ​    大一、大二在校学生，拥有一定的技术基础
+  ​    大一、大二在校学生，技术方向需拥有一定的技术基础
 
   **2、纳新方向及要求**
+
+  <div class="flex row items-center">
+    传送门：
+    <a tabindex="0" type="button" href="#intro__front-end" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">前端</span>
+        </span>
+      </span>
+    </a>
+    <a tabindex="0" type="button" href="#intro__back-end" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">后端</span>
+        </span>
+      </span>
+    </a>
+    <a tabindex="0" type="button" href="#intro__devops" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">运维</span>
+        </span>
+      </span>
+    </a>
+    <a tabindex="0" type="button" href="#intro__om-or-planning" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">运营或策划</span>
+        </span>
+      </span>
+    </a>
+  </div>
+
+  -----------------
+
+  <div id="intro__front-end"></div>
 
   - 前端（招收2~3人）
 
@@ -82,6 +122,10 @@ FWF 是一个初步成立的大学生工作室，我们有着很好的项目点�
 
           5. 有Node使用经验
 
+  -----------------
+
+  <div id="intro__back-end"></div>
+
   - 后端
 
     - JAVA后端（招收3~4人）
@@ -103,9 +147,9 @@ FWF 是一个初步成立的大学生工作室，我们有着很好的项目点�
 
             2. 有自己的独立开发项目
 
-            3. 了解JVM，JMM，JUC并发原理
+            3. 了解JVM的类加载过程，了解过GC收集器
 
-            4. 会通过explain查看索引执行计划，并进行索引优化
+            4. 会使用redis等非关系型数据库，或者Elasticsearch搜索引擎
 
             5. 了解基本的数据结构与算法。
 
@@ -130,15 +174,38 @@ FWF 是一个初步成立的大学生工作室，我们有着很好的项目点�
 
             4. Node项目服务器部署经验
 
-  - 移动端（招收3人）
+  -----------------
 
-    - 熟练使用 Flutter / React Native
+  <div id="intro__devops"></div>
 
-      - 加分项
-          1. 有前端开发经验
+  - 运维
 
-          2. 熟悉PWA技术
+    - 熟练使用和安装Linux系统
 
+    - 熟练掌握Nginx / Apache
+
+    - 有搭建服务器网站相关经验
+
+    - 有扎实的计算机网络知识，如网站加速，网络安全
+
+  -----------------
+
+  <div id="intro__om-or-planning"></div>
+
+  - 运营和策划
+
+    - 有恒心和耐心管理论坛
+
+    - 愿意学习相关知识
+
+    - 有一定学习能力
+
+      - 加分项：
+          1. 了解论坛类域名备案，有活动策划经验
+
+          2. 是活动类、运营类社团的成员或管理位
+
+          3. 有成功案例
   <br>
 
   ##### 加入我们？`
