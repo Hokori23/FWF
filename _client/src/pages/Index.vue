@@ -54,22 +54,26 @@
           />
           <!-- intro detail -->
           <div v-else>
-            <span class="text-h4">Why FWF？</span>
+            <q-banner class="text-primary" :dense="$q.screen.lt.md" rounded>
+              <span class="text-h4">Why FWF？</span>
+            </q-banner>
             <q-img
-              src="~assets/00FWFBlue-WhiteBG.png"
+              src="~assets/00FWFBlue-WhiteBG480x.png"
               contain
               class="q-mt-md q-mb-lg"
               :style="`height:${$q.screen.gt.md ? '100px' : '70px'};`"
             />
             <p>
-              FWF 是一个专注于web技术的工作室( 非院校社团 )
+              FWF 是一个专注于Web技术的工作室( 隶属于404工作室，非院校社团 )
               ，致力于打造良好的技术交流氛围。
             </p>
             <p>
               在这里，你可以与志同道合的人一起学习技术、开发项目、获得提升。
             </p>
             <br />
-            <h5 class="text-h5 q-mb-lg">关于我们</h5>
+            <q-banner class="text-primary" :dense="$q.screen.lt.md" rounded>
+              <h5 class="text-h5 q-mb-lg">关于我们</h5>
+            </q-banner>
 
             <ImgSlider />
             <div
@@ -78,15 +82,25 @@
                 'row',
                 'justify-end',
                 'text-grey',
-                $q.screen.gt.md ? 'q-mx-md q-mt-md q-mb-xl' : 'q-mx-sm q-mt-sm q-mb-lg'
+                $q.screen.gt.md
+                  ? 'q-mx-md q-mt-md q-mb-xl'
+                  : 'q-mx-sm q-mt-sm q-mb-lg'
               ]"
             >
               作品顺序随机打乱不分先后
             </div>
-            <p>
-              FWF
-              是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
-            </p>
+            <p class="text-h6"></p>
+            <q-banner
+              class="bg-primary text-white"
+              :dense="$q.screen.lt.md"
+              rounded
+              style="position: relative"
+            >
+              <span class="text-subtitle2">
+                FWF
+                是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
+              </span>
+            </q-banner>
           </div>
           <div
             :class="[
