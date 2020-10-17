@@ -1,11 +1,6 @@
 export default {
   title: `FWF 工作室纳新`,
-  intro: `#### Why FWF？
-FWF 是一个专注于web技术的工作室( 非院校社团 ) ，致力于打造良好的技术交流氛围。
-
-在这里，你可以与志同道合的人一起学习技术、开发项目、获得提升。
-
-<br />`,
+  intro: ``,
   internship: `##### 实习成员纳新
 
   **1、面向对象**
@@ -14,18 +9,28 @@ FWF 是一个专注于web技术的工作室( 非院校社团 ) ，致力于打�
 
   **2、纳新方向及要求**
 
+  -----------------
+
 
   - 前端（招收8人）
 
     - 对技术有着强烈的热爱，有上进心与责任心，有着强烈的竞争意识。有前端技术基础者优先
+  -----------------
 
   - 后端（招收12人）
 
     - 热爱后端技术，有后端开发经验者优先
+  -----------------
 
   - 运维（招收5人）
 
     - 热爱网络知识，对Linux感兴趣，有相关经验者优先
+  -----------------
+
+  - 暂时不清楚自己的方向，但是相信自己很优秀？
+
+    - 只要你在**自由学习阶段**表现出优异扎实的计算机基础和知识，大欢迎！
+  -----------------
 
   **3、关于纳新、面试及转正**
 
@@ -59,6 +64,30 @@ FWF 是一个专注于web技术的工作室( 非院校社团 ) ，致力于打�
 
   <div class="flex row items-center">
     传送门：
+    <a tabindex="0" type="button" href="#intro__om" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">运营</span>
+        </span>
+      </span>
+    </a>
+    <a tabindex="0" type="button" href="#intro__planning" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">策划</span>
+        </span>
+      </span>
+    </a>
+    <a tabindex="0" type="button" href="#intro__devops" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">运维</span>
+        </span>
+      </span>
+    </a>
     <a tabindex="0" type="button" href="#intro__front-end" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
       <span class="q-focus-helper"></span>
       <span class="q-btn__wrapper col row q-anchor--skip">
@@ -75,23 +104,59 @@ FWF 是一个专注于web技术的工作室( 非院校社团 ) ，致力于打�
         </span>
       </span>
     </a>
-    <a tabindex="0" type="button" href="#intro__devops" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
-      <span class="q-focus-helper"></span>
-      <span class="q-btn__wrapper col row q-anchor--skip">
-        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
-          <span class="block">运维</span>
-        </span>
-      </span>
-    </a>
-    <a tabindex="0" type="button" href="#intro__om-or-planning" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
-      <span class="q-focus-helper"></span>
-      <span class="q-btn__wrapper col row q-anchor--skip">
-        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
-          <span class="block">运营或策划</span>
-        </span>
-      </span>
-    </a>
   </div>
+
+  -----------------
+
+  <div id="intro__om"></div>
+
+  - 运营 **（急需）**
+
+    - 有恒心和耐心管理论坛
+
+    - 愿意学习相关知识
+
+    - 有一定学习能力
+
+      - 加分项：
+          1. 了解论坛类域名备案
+
+          2. 是运营类社团的成员或管理位
+
+          3. 有成功案例或相关经验
+
+  -----------------
+
+  <div id="intro__planning"></div>
+
+  - 策划 **（急需）**
+
+    - 有兴趣组织相关活动
+
+    - 愿意学习相关知识
+
+    - 有一定学习能力
+
+      - 加分项：
+          1. 有活动策划经验
+
+          2. 是活动类社团的成员或管理位
+
+          3. 有成功案例或相关经验
+
+  -----------------
+
+  <div id="intro__devops"></div>
+
+  - 运维 **（急需）**
+
+    - 熟练使用和安装Linux系统
+
+    - 熟练掌握Nginx / Apache
+
+    - 有搭建服务器网站相关经验
+
+    - 有扎实的计算机网络知识，如网站加速，网络安全
 
   -----------------
 
@@ -174,38 +239,6 @@ FWF 是一个专注于web技术的工作室( 非院校社团 ) ，致力于打�
 
             4. Node项目服务器部署经验
 
-  -----------------
-
-  <div id="intro__devops"></div>
-
-  - 运维
-
-    - 熟练使用和安装Linux系统
-
-    - 熟练掌握Nginx / Apache
-
-    - 有搭建服务器网站相关经验
-
-    - 有扎实的计算机网络知识，如网站加速，网络安全
-
-  -----------------
-
-  <div id="intro__om-or-planning"></div>
-
-  - 运营和策划
-
-    - 有恒心和耐心管理论坛
-
-    - 愿意学习相关知识
-
-    - 有一定学习能力
-
-      - 加分项：
-          1. 了解论坛类域名备案，有活动策划经验
-
-          2. 是活动类、运营类社团的成员或管理位
-
-          3. 有成功案例
   <br>
 
   ##### 加入我们？`
