@@ -19,6 +19,14 @@ export default function(/* { ssrContext } */) {
     modules: {
       api
     },
+    state: {
+      brightness: 100
+    },
+    mutations: {
+      setBrightness(state, brightness) {
+        state.brightness = brightness;
+      }
+    },
 
     // enable strict mode (adds overhead!)
     // for dev mode only

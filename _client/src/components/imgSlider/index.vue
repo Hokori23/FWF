@@ -9,8 +9,9 @@
     navigation
     padding
     arrows
+    :dark="dark"
     :fullscreen.sync="fullscreen"
-    class="bg-grey-1 shadow-2 rounded-borders"
+    class="shadow-2 rounded-borders"
   >
     <component
       v-for="(currComponent, idx) of sliders"
@@ -23,11 +24,21 @@
     <template v-slot:control>
       <q-carousel-control position="bottom-right" :offset="[18, 18]">
         <q-btn
+          v-if="fullscreen"
+          dense
+          round
+          :class="$q.screen.gt.xs ? 'q-mr-md' : 'q-mr-sm'"
+          :icon="dark ? 'brightness_2' : 'brightness_5'"
+          :color="$q.dark.isActive ? 'black' : 'white'"
+          text-color="primary"
+          @click="$emit('darken')"
+        >
+        </q-btn>
+        <q-btn
           v-if="$q.screen.gt.md"
-          push
           round
           dense
-          color="white"
+          :color="$q.dark.isActive ? 'black' : 'white'"
           text-color="primary"
           :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
           @click="fullscreen = !fullscreen"
@@ -45,6 +56,10 @@
   import Uni2 from './Uni2';
   export default {
     name: 'imgSlider',
+    props: {
+      dark: Boolean,
+      brightness: Number
+    },
     data() {
       return {
         slide: 0,

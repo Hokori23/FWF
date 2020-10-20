@@ -1,22 +1,45 @@
 <template>
-  <!-- <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg" />
-  </q-page> -->
   <q-page
     :class="[
       { 'q-ma-md': $q.screen.gt.xs },
-      !$q.screen.gt.xs ? 'sm-screen' : 'lg-screen',
+      !$q.screen.gt.xs ? 'sm-screen q-mb-lg' : 'lg-screen q-mb-xl',
       'home-container'
     ]"
   >
-    <div
-      v-html="
-        $markdownIt.render(
-          $q.screen.gt.xs ? `### ${intro.title}` : `#### ${intro.title}`
-        )
-      "
-      class="text-center text-primary"
-    />
+    <div class="row justify-center items-center">
+      <div
+        v-html="
+          $markdownIt.render(
+            $q.screen.gt.xs ? `### ${intro.title}` : `#### ${intro.title}`
+          )
+        "
+        class="text-primary"
+      />
+      <q-btn
+        dense
+        round
+        :class="$q.screen.gt.xs ? 'q-ml-xl' : 'q-ml-md'"
+        :icon="dark ? 'brightness_2' : 'brightness_5'"
+        color="primary"
+        @click="darken"
+      >
+        <q-popup-proxy context-menu>
+          <q-banner
+            dense
+            :style="$q.screen.gt.xs ? {} : { width: '80vw' }"
+            :class="$q.screen.gt.xs ? 'q-py-xl' : 'q-px-lg'"
+          >
+            <q-slider
+              :vertical="$q.screen.gt.xs"
+              :reverse="$q.screen.gt.xs"
+              v-model="brightness"
+              :min="0"
+              :max="100"
+            />
+          </q-banner>
+        </q-popup-proxy>
+      </q-btn>
+    </div>
     <q-card class="q-mx-xll">
       <q-tabs
         v-model="tab"
@@ -58,7 +81,15 @@
               <span class="text-h4">Why FWF？</span>
             </q-banner>
             <q-img
-              src="~assets/00FWFBlue-WhiteBG480x.png"
+              v-if="!$q.dark.isActive"
+              src="~assets/00FWFBlue-AlphaBG.png"
+              contain
+              class="q-mt-md q-mb-lg"
+              :style="`height:${$q.screen.gt.md ? '100px' : '70px'};`"
+            />
+            <q-img
+              v-else
+              src="~assets/00FWFWhite-AlphaBG.png"
               contain
               class="q-mt-md q-mb-lg"
               :style="`height:${$q.screen.gt.md ? '100px' : '70px'};`"
@@ -75,7 +106,11 @@
               <h5 class="text-h5 q-mb-lg">关于我们</h5>
             </q-banner>
 
-            <ImgSlider />
+            <ImgSlider
+              :dark="dark"
+              :brightness.sync="brightness"
+              @darken="darken"
+            />
             <div
               :class="[
                 'text-caption',
@@ -91,12 +126,19 @@
             </div>
             <p class="text-h6"></p>
             <q-banner
-              class="bg-primary text-white"
+              :class="
+                $q.dark.isActive ? 'text-primary' : 'bg-primary text-white'
+              "
               :dense="$q.screen.lt.md"
               rounded
               style="position: relative"
             >
-              <span class="text-subtitle2">
+              <span
+                :class="[
+                  'text-subtitle2',
+                  $q.dark.isActive ? 'text-weight-bolder' : ''
+                ]"
+              >
                 FWF
                 是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
               </span>
@@ -135,11 +177,17 @@
   import intro from 'assets/fwf_intro';
   import ApplyDialog from 'components/applyDialog';
   import ImgSlider from 'components/imgSlider/index.vue';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapMutations } from 'vuex';
+  import { colors } from 'quasar';
   export default {
     name: 'Index',
     components: {
       ImgSlider
+    },
+    watch: {
+      brightness(val) {
+        this.setBrightness(val);
+      }
     },
     computed: {
       tabKeys() {
@@ -153,11 +201,16 @@
     data() {
       return {
         intro,
-        tab: ''
+        tab: '',
+        dark: false,
+        primaryColor: '#1976D2',
+        warningColor: '#F2C037',
+        brightness: 100
       };
     },
     methods: {
       ...mapActions({ apply: 'api/apply' }),
+      ...mapMutations({ setBrightness: 'setBrightness' }),
       tabKeyDictionary(key) {
         const dictionary = {
           intro: 'FWF简介',
@@ -218,7 +271,19 @@
             }
             vm.loading(false);
           });
+      },
+      darken() {
+        const dark = (this.dark = !this.dark);
+        this.$q.dark.set(dark);
+        colors.setBrand('primary', dark ? this.warningColor : this.primaryColor);
+        colors.setBrand('warning', dark ? this.primaryColor : this.warningColor);
+        dark
+          ? (this.brightness = this.brightness > 80 ? 80 : this.brightness) // 防止过亮
+          : (this.brightness = this.brightness < 95 ? 95 : this.brightness); // 防止过暗
       }
+    },
+    mounted() {
+      this.darken();
     }
   };
 </script>
