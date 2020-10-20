@@ -1,6 +1,11 @@
 <template>
   <q-dialog ref="dialog" @hide="onDialogHide">
-    <q-card class="q-dialog-plugin">
+    <q-card
+      :class="[
+        'q-dialog-plugin',
+        $q.screen.lt.md ? 'q-mb-md q-pa-sm' : 'q-mb-xl q-pa-md'
+      ]"
+    >
       <q-form @submit="onOKClick">
         <q-card-section>
           <div
