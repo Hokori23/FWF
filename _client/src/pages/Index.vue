@@ -164,7 +164,7 @@
               <h5 class="text-h5 q-mb-lg">欢迎加入</h5>
             </q-banner>
             <span
-              class="text-subtitle2 text-primary text-weight-bolder q-ml-xl"
+              class="text-subtitle2 text-weight-bolder q-ml-lg"
             >
               FWF
               是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
