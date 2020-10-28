@@ -237,8 +237,8 @@
       },
       positions() {
         const positionObj = {
-          internship: ['前端', '后端', '还没确定'],
-          regular: ['运营', '策划', '运维', '前端', '后端']
+          internship: ['前端', '后端', '运维', '还没确定'],
+          regular: ['运营', '策划', '运维', '美工设计', 'UI设计', '前端', '后端']
         };
         return positionObj[this.tabKey];
       }
