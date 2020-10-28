@@ -12,17 +12,17 @@ export default {
   -----------------
 
 
-  - 前端（招收8人）
+  - 前端
 
     - 对技术有着强烈的热爱，有上进心与责任心，有着强烈的竞争意识。有前端技术基础者优先
   -----------------
 
-  - 后端（招收12人）
+  - 后端
 
-    - 热爱后端技术，有后端开发经验者优先
+    - 对技术有着强烈的热爱，有上进心与责任心，有着强烈的竞争意识。有后端开发经验者优先
   -----------------
 
-  - 运维（招收5人）
+  - 运维
 
     - 热爱网络知识，对Linux感兴趣，有相关经验者优先
   -----------------
@@ -42,11 +42,6 @@ export default {
 
   - **通过面试后，有三个月时间跟随FWF前辈学习相关方向的技术。随后进行转正考核**
 
- >	前端目标转正人数：5人
-
- > 后端目标转正人数：8人
-
- > 运维目标转正人数：3人
 
   **最终转正人数会根据实际招收人数有所调整**
 
@@ -60,7 +55,7 @@ export default {
 
   **1、面向对象**
 
-  ​    大一、大二在校学生，技术方向需拥有一定的技术基础
+  ​    大一、大二在校学生
 
   **2、纳新方向及要求**
 
@@ -70,7 +65,7 @@ export default {
       <span class="q-focus-helper"></span>
       <span class="q-btn__wrapper col row q-anchor--skip">
         <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
-          <span class="block">运营</span>
+          <span class="block text-bold">运营</span>
         </span>
       </span>
     </a>
@@ -78,7 +73,7 @@ export default {
       <span class="q-focus-helper"></span>
       <span class="q-btn__wrapper col row q-anchor--skip">
         <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
-          <span class="block">策划</span>
+          <span class="block text-bold">策划</span>
         </span>
       </span>
     </a>
@@ -86,7 +81,23 @@ export default {
       <span class="q-focus-helper"></span>
       <span class="q-btn__wrapper col row q-anchor--skip">
         <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
-          <span class="block">运维</span>
+          <span class="block text-bold">运维</span>
+        </span>
+      </span>
+    </a>
+    <a tabindex="0" type="button" href="#intro__design" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">美工设计</span>
+        </span>
+      </span>
+    </a>
+    <a tabindex="0" type="button" href="#intro__ui" role="link" class="q-btn q-btn-item non-selectable no-outline q-btn--outline q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable q-btn--wrap q-my-sm q-mx-xs q-px-xs q-btn--dense">
+      <span class="q-focus-helper"></span>
+      <span class="q-btn__wrapper col row q-anchor--skip">
+        <span class="q-btn__content text-center col items-center q-anchor--skip justify-center row">
+          <span class="block">UI设计</span>
         </span>
       </span>
     </a>
@@ -162,9 +173,37 @@ export default {
 
   -----------------
 
+  <div id="intro__design"></div>
+
+  - 美工设计
+
+    - 掌握任意一个绘图软件
+
+    - 对节日主题的活动有较大兴趣
+
+    - 有一定的审美
+
+    - 有历史作品
+
+  -----------------
+
+  <div id="intro__ui"></div>
+
+  - UI设计
+
+    - 掌握任意一个绘图软件
+
+    - 有网页设计基础
+
+    - 有一定的审美
+
+    - 有历史作品
+
+  -----------------
+
   <div id="intro__front-end"></div>
 
-  - 前端（招收2~3人）
+  - 前端
 
     - 掌握HTML, CSS, JavaScript
 
@@ -195,7 +234,7 @@ export default {
 
   - 后端
 
-    - JAVA后端（招收3~4人）
+    - JAVA后端
 
       - 掌握Java语言，能够正确运用Java API，有良好的编程习惯，代码有较强的可读性
 
@@ -220,7 +259,7 @@ export default {
 
             5. 了解基本的数据结构与算法。
 
-    - Node后端（招收1~3人）
+    - Node后端
 
       - 掌握JavaScript基础，如闭包, 作用域, 原型链等，对ES6以上规范有一定的学习
 
