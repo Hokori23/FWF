@@ -28,7 +28,7 @@
           dense
           round
           :class="$q.screen.gt.xs ? 'q-mr-md' : 'q-mr-sm'"
-          :icon="dark ? 'brightness_2' : 'brightness_5'"
+          :icon="dark ? 'fas fa-hat-wizard' : 'brightness_5'"
           :color="$q.dark.isActive ? 'black' : 'white'"
           text-color="primary"
           @click="$emit('darken')"

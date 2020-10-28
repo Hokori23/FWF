@@ -1,11 +1,47 @@
 <template>
   <q-page
     :class="[
-      { 'q-ma-md': $q.screen.gt.xs },
-      !$q.screen.gt.xs ? 'sm-screen q-mb-lg' : 'lg-screen q-mb-xl',
+      { 'q-pa-md': $q.screen.gt.xs },
+      !$q.screen.gt.xs ? 'sm-screen' : 'lg-screen',
       'home-container'
     ]"
+    :style="`padding-bottom: ${$q.screen.gt.xs ? '48' : '250'}px`"
   >
+    <!-- 背景 -->
+    <div
+      v-if="$q.dark.isActive"
+      :style="`
+        position: fixed;
+        content: '';
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-image: url(${
+          $q.screen.gt.xs
+            ? 'https://upyun.hokori.online/image/halloween1.jpg'
+            : 'https://upyun.hokori.online/image/halloween2.jpg'
+        });
+        background-size: contain;
+        background-attachment: fixed;
+        background-position: ${$q.screen.gt.xs ? 'center' : 'top'};
+        z-index: -99;
+        filter: brightness(${brightness * 0.75}%);
+    `"
+    />
+    <div
+      v-else
+      style="
+        position: fixed;
+        content: '';
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: -99;
+        filter: brightness(${brightness - 20}%);
+      "
+    />
     <div class="row justify-center items-center">
       <div
         v-html="
@@ -13,13 +49,13 @@
             $q.screen.gt.xs ? `### ${intro.title}` : `#### ${intro.title}`
           )
         "
-        class="text-primary"
+        :class="[$q.dark.isActive ? 'text-white' : 'text-primary']"
       />
       <q-btn
         dense
         round
         :class="$q.screen.gt.xs ? 'q-ml-xl' : 'q-ml-md'"
-        :icon="dark ? 'brightness_2' : 'brightness_5'"
+        :icon="dark ? 'fas fa-hat-wizard' : 'brightness_5'"
         color="primary"
         @click="darken"
       >
@@ -124,25 +160,29 @@
             >
               作品顺序随机打乱不分先后
             </div>
-            <p class="text-h6"></p>
-            <q-banner
-              :class="
-                $q.dark.isActive ? 'text-primary' : 'bg-primary text-white'
-              "
-              :dense="$q.screen.lt.md"
-              rounded
-              style="position: relative"
-            >
-              <span
-                :class="[
-                  'text-subtitle2',
-                  $q.dark.isActive ? 'text-weight-bolder' : ''
-                ]"
-              >
-                FWF
-                是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
-              </span>
+            <q-banner class="text-primary" :dense="$q.screen.lt.md" rounded>
+              <h5 class="text-h5 q-mb-lg">欢迎加入</h5>
             </q-banner>
+            <span
+              class="text-subtitle2 text-primary text-weight-bolder q-ml-xl"
+            >
+              FWF
+              是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
+            </span>
+            <div class="row justify-center q-my-xl">
+              <q-img
+                v-if="$q.dark.isActive"
+                src="~assets/LittleFWhite-Alpha256x.gif"
+                :style="`height: ${$q.screen.lt.md ? '80' : '100'}px`"
+                contain
+              />
+              <q-img
+                v-else
+                src="~assets/LittleFBlue-Alpha256x.gif"
+                :style="`height: ${$q.screen.lt.md ? '80' : '100'}px`"
+                contain
+              />
+            </div>
           </div>
           <div
             :class="[
@@ -177,7 +217,7 @@
   import intro from 'assets/fwf_intro';
   import ApplyDialog from 'components/applyDialog';
   import ImgSlider from 'components/imgSlider/index.vue';
-  import { mapActions, mapMutations } from 'vuex';
+  import { mapActions, mapMutations, mapState } from 'vuex';
   import { colors } from 'quasar';
   export default {
     name: 'Index',
@@ -196,13 +236,15 @@
         });
         this.tab = keys[0];
         return keys;
-      }
+      },
+      ...mapState({
+        dark: 'dark'
+      })
     },
     data() {
       return {
         intro,
         tab: '',
-        dark: false,
         primaryColor: '#1976D2',
         warningColor: '#F2C037',
         brightness: 100
@@ -210,7 +252,7 @@
     },
     methods: {
       ...mapActions({ apply: 'api/apply' }),
-      ...mapMutations({ setBrightness: 'setBrightness' }),
+      ...mapMutations({ setBrightness: 'setBrightness', setDark: 'setDark' }),
       tabKeyDictionary(key) {
         const dictionary = {
           intro: 'FWF简介',
@@ -273,13 +315,12 @@
           });
       },
       darken() {
-        const dark = (this.dark = !this.dark);
-        this.$q.dark.set(dark);
-        colors.setBrand('primary', dark ? this.warningColor : this.primaryColor);
-        colors.setBrand('warning', dark ? this.primaryColor : this.warningColor);
+        const dark = !this.dark;
+        this.setDark({ vm: this, dark });
         dark
           ? (this.brightness = this.brightness > 80 ? 80 : this.brightness) // 防止过亮
-          : (this.brightness = this.brightness < 95 ? 95 : this.brightness); // 防止过暗
+          : // : (this.brightness = this.brightness < 95 ? 95 : this.brightness); // 防止过暗
+            (this.brightness = 100);
       }
     },
     mounted() {

@@ -20,7 +20,7 @@
             />
             <q-img
               v-else
-              src="~assets/00FWFWhite-AlphaBG.png"
+              src="~assets/00FWFOrange-AlphaBG.png"
               contain
               :style="`width:${$q.screen.gt.md ? '480px' : '80vw'};`"
             />
@@ -49,7 +49,7 @@
             dense
             round
             :class="$q.screen.gt.xs ? 'q-ml-xl' : 'q-ml-md'"
-            :icon="$q.dark.isActive ? 'brightness_2' : 'brightness_5'"
+            :icon="$q.dark.isActive ? 'fas fa-hat-wizard' : 'brightness_5'"
             color="primary"
             style="position: absolute; right: 20px; top: 20px"
             @click.stop="darken"
@@ -77,23 +77,24 @@
       };
     },
     computed: mapState({
-      brightness: 'brightness'
+      brightness: 'brightness',
+      dark: 'dark'
     }),
     methods: {
-      ...mapMutations({ setBrightness: 'setBrightness' }),
+      ...mapMutations({ setBrightness: 'setBrightness', setDark: 'setDark' }),
       showOn() {
         this.show = true;
       },
       darken() {
-        const dark = !this.$q.dark.isActive;
-        this.$q.dark.set(dark);
-        colors.setBrand('primary', dark ? this.warningColor : this.primaryColor);
-        colors.setBrand('warning', dark ? this.primaryColor : this.warningColor);
+        const dark = !this.dark;
+        this.setDark({ vm: this, dark });
         dark ? this.setBrightness(85) : this.setBrightness(100);
       }
     }
   };
 </script>
+<style lang="scss">
+</style>
 <style lang="scss" scoped>
   .animation_fade1 {
     animation: fadeInAndOut 3s ease-in-out infinite;
