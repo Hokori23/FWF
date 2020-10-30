@@ -9,8 +9,12 @@
       enter-active-class="animated fadeIn"
       leave-active-class="animated fadeOut"
     >
+      <canvas id="canvas" :key="'canvas'" v-if="!show && timer" />
       <q-page-container :key="1" class="non-selectable">
-        <q-page v-if="!show" class="column justify-center items-center">
+        <q-page
+          v-if="!show && !timer"
+          class="column justify-center items-center"
+        >
           <div>
             <q-img
               v-if="!$q.dark.isActive"
@@ -64,6 +68,7 @@
 </template>
 
 <script>
+  import Clock from 'assets/js/Clock';
   import { mapState, mapMutations } from 'vuex';
   import { colors } from 'quasar';
   export default {
@@ -73,7 +78,8 @@
         show: false,
         primaryColor: '#1976D2',
         warningColor: '#F2C037',
-        mouseHover: false
+        mouseHover: false,
+        timer: 1
       };
     },
     computed: mapState({
@@ -89,6 +95,15 @@
         const dark = !this.dark;
         this.setDark({ vm: this, dark });
         dark ? this.setBrightness(85) : this.setBrightness(100);
+      }
+    },
+    mounted() {
+      const endDate = new Date('2020-10-31 19:30:00').getTime();
+      const nowDate = new Date().getTime();
+      if (endDate > nowDate) {
+        Clock.init('canvas', this);
+      } else {
+        this.timer = null;
       }
     }
   };
