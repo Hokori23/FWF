@@ -75,7 +75,9 @@
           />
           <q-select
             v-model="applier.grade"
-            :options="grades"
+            :options="
+              this.tabKey === 'internship' ? internGrades : regularGrades
+            "
             :outlined="$q.screen.gt.xs"
             :dense="$q.screen.lt.md"
             label="年级*"
@@ -271,7 +273,7 @@
           position: '',
           isInternship: this.tabKey === 'internship'
         },
-        grades: [
+        internGrades: [
           {
             value: 1,
             label: '大一'
@@ -279,6 +281,20 @@
           {
             value: 2,
             label: '大二'
+          }
+        ],
+        regularGrades: [
+          {
+            value: 1,
+            label: '大一'
+          },
+          {
+            value: 2,
+            label: '大二'
+          },
+          {
+            value: 3,
+            label: '大三'
           }
         ],
         transitionShow: 'flip-up',

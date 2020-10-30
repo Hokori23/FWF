@@ -205,7 +205,8 @@
                     grade: (val) => {
                       const grade = {
                         1: '大一',
-                        2: '大二'
+                        2: '大二',
+                        3: '大三'
                       };
                       return grade[val];
                     }
