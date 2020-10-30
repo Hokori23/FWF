@@ -153,6 +153,17 @@
             ]
           }
         ]
+      },
+      {
+        "name": "其他",
+        "school_and_majoritys": [
+          {
+            "school": "其他",
+            "majority": [
+              "其他"
+            ]
+          }
+        ]
       }
     ]
   }
