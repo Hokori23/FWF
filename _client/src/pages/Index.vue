@@ -20,7 +20,7 @@
         background-image: url(${
           $q.screen.gt.xs
             ? 'https://upyun.hokori.online/image/halloween1.jpg'
-            : 'https://upyun.hokori.online/image/halloween2.jpg'
+            : 'https://upyun.hokori.online/image/halloween2-mb.jpg'
         });
         background-size: contain;
         background-attachment: fixed;
@@ -163,9 +163,7 @@
             <q-banner class="text-primary" :dense="$q.screen.lt.md" rounded>
               <h5 class="text-h5 q-mb-lg">欢迎加入</h5>
             </q-banner>
-            <span
-              class="text-subtitle2 text-weight-bolder q-ml-lg"
-            >
+            <span class="text-subtitle2 text-weight-bolder q-ml-lg">
               FWF
               是一个初步成立的大学生工作室，我们有着很好的项目点子等着你实现，我们期待你的加入。
             </span>
@@ -360,5 +358,13 @@
       margin-left: 25%;
       margin-right: 25%;
     }
+  }
+  hr {
+    color: $primary;
+    border-bottom-color: $primary;
+  }
+  .q-dark hr {
+    color: $warning;
+    border-bottom-color: $warning;
   }
 </style>
