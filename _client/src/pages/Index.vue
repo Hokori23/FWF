@@ -320,9 +320,6 @@
           : // : (this.brightness = this.brightness < 95 ? 95 : this.brightness); // 防止过暗
             (this.brightness = 100);
       }
-    },
-    mounted() {
-      this.darken();
     }
   };
 </script>

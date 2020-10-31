@@ -8,11 +8,26 @@
     <transition-group
       enter-active-class="animated fadeIn"
       leave-active-class="animated fadeOut"
+      appear
+      mode="out-in"
     >
-      <canvas id="canvas" :key="'canvas'" v-if="!show && timer" />
+      <canvas
+        id="canvas"
+        :key="'canvas'"
+        v-if="!show && section === 'counting'"
+        style="position: absolute"
+      />
+      <q-page-container
+        :key="'404wefound'"
+        v-if="!show && section === 'interlude'"
+        class="bg-black row justify-center items-center non-selectable"
+        style="height: 100vh"
+      >
+        <h1 class="text-primary text-bold">We Are 404</h1>
+      </q-page-container>
       <q-page-container :key="1" class="non-selectable">
         <q-page
-          v-if="!show && !timer"
+          v-if="!show && section === 'final'"
           class="column justify-center items-center"
         >
           <div>
@@ -60,7 +75,7 @@
           />
         </q-page>
       </q-page-container>
-      <q-page-container v-show="show" :key="2">
+      <q-page-container v-if="show" :key="2">
         <router-view />
       </q-page-container>
     </transition-group>
@@ -73,13 +88,25 @@
   import { colors } from 'quasar';
   export default {
     name: 'MainLayout',
+    watch: {
+      section(val) {
+        if (val === 'interlude') {
+          setTimeout(() => {
+            this.section = 'final';
+            this.setBrightness(85);
+          }, 5000);
+        }
+      }
+    },
     data() {
       return {
-        show: false,
+        show: this.$route.path === '/' ? false : true,
         primaryColor: '#1976D2',
         warningColor: '#F2C037',
         mouseHover: false,
-        timer: 1
+        section: 'counting',
+        timer: 1,
+        startTime: '2020-10-31 19:20:00'
       };
     },
     computed: mapState({
@@ -94,17 +121,22 @@
       darken() {
         const dark = !this.dark;
         this.setDark({ vm: this, dark });
-        dark ? this.setBrightness(85) : this.setBrightness(100);
+        dark ? this.setBrightness(80) : this.setBrightness(100);
       }
     },
     mounted() {
-      const endDate = new Date('2020-10-31 19:30:00').getTime();
+      this.darken();
+      const endDate = new Date(this.startTime).getTime();
       const nowDate = new Date().getTime();
       if (endDate > nowDate) {
         Clock.init('canvas', this);
+        this.setBrightness(100);
+        this.darken();
       } else {
         this.timer = null;
+        this.section = 'final';
       }
+      // this.timer = null;
     }
   };
 </script>

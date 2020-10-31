@@ -77,7 +77,7 @@ var Clock = (function() {
   };
 
   var getTime = function(amPM, vm) {
-    var endDate = new Date('2020-10-31 19:30:00').getTime(),
+    var endDate = new Date(vm.startTime || '2020-10-31 19:30:00').getTime(),
       nowDate = new Date().getTime(),
       date = endDate - nowDate,
       day = Math.floor(date / 1000 / 60 / 60 / 24),
@@ -101,6 +101,8 @@ var Clock = (function() {
     if (endDate < nowDate) {
       clearInterval(vm.timer);
       vm.timer = null;
+      vm.section = 'interlude';
+      vm.darken();
     }
     return {
       hours: hours,
