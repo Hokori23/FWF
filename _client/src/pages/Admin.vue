@@ -90,8 +90,9 @@
                 <div class="text-subtitle1">
                   已拒: -1<br />
                   等待: 0<br />
-                  实习: 1<br />
-                  通过面试: 2
+                  纳新: 1<br />
+                  实习: 2<br />
+                  通过面试: 3
                 </div>
               </template>
               <q-input v-model="props.row[key]" dense autofocus />
@@ -188,6 +189,7 @@
                 name: key,
                 label: dictionary[key],
                 field: key,
+                align: key === 'bio' ? 'left' : 'center',
                 format: (val) => {
                   const formatter = {
                     createdAt: (val) => moment(val).format('llll'),
@@ -196,12 +198,13 @@
                       const status = {
                         '-1': '已拒',
                         0: '等待',
-                        1: '实习',
-                        2: '通过'
+                        1: '纳新',
+                        2: '实习',
+                        3: '通过面试'
                       };
                       return status[val];
                     },
-                    isInternship: (val) => (val === 0 ? '实习' : '面试'),
+                    isInternship: (val) => (val === true ? '实习' : '面试'),
                     grade: (val) => {
                       const grade = {
                         1: '大一',
