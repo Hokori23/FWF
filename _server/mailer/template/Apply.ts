@@ -182,7 +182,8 @@ export default ({ title = '', info = {}, detailURL }) => {
     let value = isDef(info[key]) ? info[key] : '无';
     const gradeDictionary = {
       1: '大一',
-      2: '大二'
+      2: '大二',
+      3: '大三'
     };
     const valueFormatter = {
       是否实习: (value) => (value ? '申请实习' : '申请面试'),
