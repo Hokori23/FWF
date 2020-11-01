@@ -1,6 +1,6 @@
 import moment from 'moment';
 import juice from 'juice';
-import { happy, qr } from '@static';
+import { happy, qr_apply } from '@static';
 
 const isUndef = (v) => {
   return v === undefined || v === null;
@@ -63,12 +63,15 @@ export default ({ title = '', name = '' }) => {
                 justify-self: flex-start;
               }
   
-              .mail__container__body .qr-code {
+              .mail__container__body ._aqr_apply-code {
                 margin: 15px auto;
                 width: 130px;
               }
   
               .mail__container__body .qr-code img {
+                max-width: 120px;
+                display: block;
+                margin: 10px auto;
                 width: 100%;
               }
   
@@ -187,17 +190,16 @@ export default ({ title = '', name = '' }) => {
                 <div class="mail__container__body">
                   <div>
                     <p>恭喜~ 你的申请通过啦！</p><br />
-                    <p>欢迎你加入<span class="text-emphasize"> FWF工作室 </span></p>
                     <p>请扫描以下二维码加入纳新群</p>
                     <div class="qr-code">
-                      <img src="${qr}">
+                      <img src="${qr_apply}">
                     </div>
                   </div>
                 </div>
                 <div class="footer">
                   <div class="footer__tips">
                     <div class="footer__tips__left">
-                      若不是您订阅的邮件，请勿理会<br />
+                      若这不是您订阅的邮件，请勿理会<br />
                       本邮件由 <span class="text-emphasize">FWF工作室</span> 系统自动发送，请勿回复
                     </div>
                     <div class="footer__tips__right">

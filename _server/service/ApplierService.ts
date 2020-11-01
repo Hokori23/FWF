@@ -5,7 +5,9 @@ import { broadcast, send } from '@mailer';
 
 // 邮件模板
 import ApplyTemplate from '@mailer/template/Apply';
-import SuccessTemplate from '@mailer/template/Success';
+import ApplySuccessTemplate from '@mailer/template/ApplySuccess';
+import InternSuccessTemplate from '@mailer/template/InternSuccess';
+import RegularSuccessTemplate from '@mailer/template/RegularSuccess';
 import FailedTemplate from '@mailer/template/Failed';
 const detailURL = '';
 
@@ -52,20 +54,27 @@ const Edit = async (applier: Applier): Promise<Restful> => {
     const oldPermittedStatus = Number(existedApplier?.isPermitted);
     const newPermittedStatus = Number(applier.isPermitted);
 
+    // 新状态是否合法
+
+    if (newPermittedStatus < -1 || newPermittedStatus > 3) {
+      return new Restful(5, '状态不合法，合法值：-1 ~ 3');
+    }
+
     // 无更改
     if (oldPermittedStatus === newPermittedStatus) {
-      return new Restful(3, '状态与原来的相同');
+      return new Restful(4, '状态与原来的相同');
     }
-    const cantEditRest = new Restful(2, '状态不可更改');
 
     if (oldPermittedStatus === -1) {
       // 已拒
-      return cantEditRest;
+      return new Restful(3, '该申请已拒，不可再次更改');
     }
 
-    if (oldPermittedStatus > 0 && newPermittedStatus === 0) {
-      // 实习||通过 --x--> 等待
-      return cantEditRest;
+    if (oldPermittedStatus > 0 && newPermittedStatus < oldPermittedStatus) {
+      // 纳新--x-->等待
+      // 实习--x-->纳新
+      // 通过面试--x-->实习
+      return new Restful(2, '状态不可回退');
     }
 
     const newApplier = await Action.Update(<Applier>existedApplier, applier);
@@ -74,14 +83,22 @@ const Edit = async (applier: Applier): Promise<Restful> => {
     const to = {
       to: { name: existedApplier?.name, address: existedApplier?.email }
     };
-
-    if (newPermittedStatus > 0) {
-      content.title = 'FWF工作室申请通过';
-      send(content, to, SuccessTemplate);
-    }
-
-    if (newPermittedStatus === -1) {
-      content.title = 'FWF工作室申请未通过';
+    // 已拒: -1
+    // 等待: 0
+    // 纳新: 1
+    // 实习: 2
+    // 通过面试: 3
+    if (newPermittedStatus === 1) {
+      content.title = 'FWF工作室纳新申请通过';
+      send(content, to, ApplySuccessTemplate);
+    } else if (newPermittedStatus === 2) {
+      content.title = '恭喜你成为FWF工作室实习成员';
+      send(content, to, InternSuccessTemplate);
+    } else if (newPermittedStatus === 3) {
+      content.title = '恭喜你成为FWF工作室正式成员';
+      send(content, to, RegularSuccessTemplate);
+    } else if (newPermittedStatus === -1) {
+      content.title = 'FWF工作室纳新申请未通过';
       send(content, to, FailedTemplate);
     }
 
