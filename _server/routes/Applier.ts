@@ -12,7 +12,32 @@ const ROUTER = EXPRESS.Router();
  * @param { Applier } applier
  */
 ROUTER.post('/apply', async (req, res, next) => {
+  const openTime = moment('2020-10-31 19:20:00');
+  const nowTime = moment();
 
+  if (nowTime.isBefore(openTime)) {
+    res
+      .status(200)
+      .json(
+        new Restful(
+          98,
+          `暂未开放申请（申请开放时间为${openTime.format('llll')}），敬请期待`
+        )
+      );
+    return next();
+  }
+  const endTime = moment('2020-11-04 23:59:59')
+  if (nowTime.isAfter(endTime)) {
+    res
+      .status(200)
+      .json(
+        new Restful(
+          98,
+          `申请已于${endTime.format('llll')}截至，敬请期待下一次纳新哦！`
+        )
+      );
+    return next();
+  }
 
   const applier = Applier.build(req.body);
   if (
