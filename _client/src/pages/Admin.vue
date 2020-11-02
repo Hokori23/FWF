@@ -56,6 +56,14 @@
           flat
           round
           dense
+          :icon="$q.dark.isActive ? 'fas fa-hat-wizard' : 'brightness_5'"
+          @click="darken()"
+          class="q-ml-md"
+        />
+        <q-btn
+          flat
+          round
+          dense
           icon="refresh"
           @click="getApplication()"
           class="q-ml-md"
@@ -77,6 +85,16 @@
             :props="props"
           >
             {{ columns[index].format(props.row[key]) }}
+
+            <q-tooltip
+              v-if="key === 'bio'"
+              transition-show="scale"
+              transition-hide="scale"
+              max-width="500px"
+              content-class="text-body1"
+            >
+              {{ columns[index].format(props.row[key]) }}
+            </q-tooltip>
             <q-popup-edit
               v-model="props.row[key]"
               v-if="key === 'isPermitted'"
@@ -106,7 +124,7 @@
 <script>
   import moment from 'moment';
   moment.locale('zh-cn');
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState, mapMutations } from 'vuex';
   const dictionary = {
     id: 'ID',
     name: '姓名',
@@ -127,6 +145,7 @@
   export default {
     name: 'Admin',
     methods: {
+      ...mapMutations({ setBrightness: 'setBrightness', setDark: 'setDark' }),
       ...mapActions({
         retrieve: 'api/retrieve',
         edit: 'api/edit',
@@ -155,7 +174,6 @@
       async editApplication(newApply, ref) {
         try {
           this.isLoading = true;
-          console.log(newApply);
           const res = await this.edit(newApply);
           const { code, message, data } = res;
           this.notify(message, Number(!!code));
@@ -167,9 +185,17 @@
       },
       dictionary(key) {
         return dictionary[key];
+      },
+      darken() {
+        const dark = !this.dark;
+        this.setDark({ vm: this, dark });
+        this.setBrightness(95);
       }
     },
     computed: {
+      ...mapState({
+        dark: 'dark'
+      }),
       columns() {
         if (!this.data.length) {
           return [];
@@ -190,6 +216,10 @@
                 label: dictionary[key],
                 field: key,
                 align: key === 'bio' ? 'left' : 'center',
+                style:
+                  key === 'bio'
+                    ? 'max-width: 500px; overflow: hidden; text-overflow:ellipsis; white-space: nowrap'
+                    : '',
                 format: (val) => {
                   const formatter = {
                     createdAt: (val) => moment(val).format('llll'),
@@ -248,5 +278,3 @@
     }
   };
 </script>
-<style scoped>
-</style>
