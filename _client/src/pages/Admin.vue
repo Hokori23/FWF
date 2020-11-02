@@ -34,7 +34,9 @@
             :key="column.name"
             :val="column.name"
             :label="dictionary(column.name)"
+            left-label
             v-model="visibleColumns"
+            class="q-mx-md q-mb-sm"
           />
         </div>
         <q-select
@@ -90,7 +92,7 @@
               v-if="key === 'bio'"
               transition-show="scale"
               transition-hide="scale"
-              max-width="500px"
+              max-width="400px"
               content-class="text-body1"
             >
               {{ columns[index].format(props.row[key]) }}
@@ -105,12 +107,15 @@
               :ref="`${props.row.id}-${key}`"
             >
               <template v-slot:title>
-                <div class="text-subtitle1">
+                <div class="text-subtitle2">
                   已拒: -1<br />
                   等待: 0<br />
                   纳新: 1<br />
                   实习: 2<br />
                   通过面试: 3
+                  <div class="text-overline text-primary">
+                    注意，状态更改后不能回退到数值小的状态（除已拒外）
+                  </div>
                 </div>
               </template>
               <q-input v-model="props.row[key]" dense autofocus />
@@ -218,7 +223,9 @@
                 align: key === 'bio' ? 'left' : 'center',
                 style:
                   key === 'bio'
-                    ? 'max-width: 500px; overflow: hidden; text-overflow:ellipsis; white-space: nowrap'
+                    ? 'max-width: 300px; overflow: hidden; text-overflow:ellipsis; white-space: nowrap'
+                    : key === 'isPermitted'
+                    ? 'cursor: pointer;'
                     : '',
                 format: (val) => {
                   const formatter = {
@@ -246,11 +253,17 @@
                   };
                   return formatter[key] ? formatter[key](val) : val ? val : '---';
                 },
-                sortable: key === 'createdAt' || key === 'updatedAt',
+                sortable: true,
                 sort: (a, b) => {
-                  const a_time = new Date(a).getTime();
-                  const b_time = new Date(b).getTime();
-                  return a_time - b_time;
+                  if (key === 'createdAt' || key === 'updatedAt') {
+                    const a_time = new Date(a).getTime();
+                    const b_time = new Date(b).getTime();
+                    return a_time - b_time;
+                  }
+                  if (typeof a === 'string') {
+                    return a.localeCompare(b, 'zh');
+                  }
+                  return a - b;
                 }
               };
         });
