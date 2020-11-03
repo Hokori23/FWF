@@ -1,5 +1,12 @@
-import { DataTypes, Model } from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  HasManyGetAssociationsMixin,
+  HasManyCreateAssociationMixin
+} from 'sequelize';
+
 import DB from '@database';
+import { InterviewRecord } from '@vo';
 
 interface ApplyAttributes {
   id: number;
@@ -35,6 +42,9 @@ class Applier extends Model implements ApplyAttributes {
   public isPermitted!: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  public getInterviewRecords!: HasManyGetAssociationsMixin<InterviewRecord>;
+  public createInterviewRecord!: HasManyCreateAssociationMixin<InterviewRecord>;
 }
 
 Applier.init(
@@ -172,7 +182,7 @@ Applier.init(
     isPermitted: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
-      comment: '-1: 已拒, 0: 等待, 1: 实习, 2: 通过面试'
+      comment: '-1: 已拒, 0: 等待, 1: 纳新, 2: 实习, 3: 通过面试'
     }
   },
   {
