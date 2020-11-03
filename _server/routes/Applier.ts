@@ -26,7 +26,7 @@ ROUTER.post('/apply', async (req, res, next) => {
       );
     return next();
   }
-  const endTime = moment('2020-11-04 23:59:59')
+  const endTime = moment('2020-11-04 23:59:59');
   if (nowTime.isAfter(endTime)) {
     res
       .status(200)
@@ -116,20 +116,18 @@ ROUTER.get('/retrieve', async (req, res, next) => {
 
 /**
  * 遍历用户
- * @path /retrieve-all
+ * @path /retrieve-page
  */
-ROUTER.get('/retrieve-all', async (req, res, next) => {
+ROUTER.get('/retrieve-page', async (req, res, next) => {
   try {
-    const { page, rowsPerPage, sortBy, descending } = req.query;
-    if (isUndef(page) || isUndef(rowsPerPage)) {
+    const { page, capacity, sortBy, descending } = req.query;
+    if (isUndef(page) || isUndef(capacity) || page < 1 || capacity < 1) {
       res.status(200).json(new Restful(1, '参数错误'));
       return next();
     }
     res
       .status(200)
-      .json(
-        await Service.Retrieve__Page(page, rowsPerPage, sortBy, descending)
-      );
+      .json(await Service.Retrieve__Page(page, capacity, sortBy, descending));
   } catch (e) {
     // 进行邮件提醒
     res.status(500).end();

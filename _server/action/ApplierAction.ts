@@ -43,7 +43,7 @@ const Retrieve__ByID = (id: number): Promise<Applier | null> => {
 const Retrieve__Page = (
   offset: number,
   limit: number,
-  sortBy: string,
+  sortBy?: string,
   descending: boolean = false
 ): Promise<Array<Applier | null>> => {
   return Applier.findAll({

@@ -109,7 +109,7 @@ const Edit = async (applier: Applier): Promise<Restful> => {
 };
 
 /**
- * 遍历用户
+ * 分页遍历
  * @param { number } page
  * @param { number } capacity
  * @param { string } sortBy
@@ -118,26 +118,25 @@ const Edit = async (applier: Applier): Promise<Restful> => {
 const Retrieve__Page = async (
   page: number,
   capacity: number,
-  sortBy: string,
+  sortBy?: string,
   descending: boolean = false
 ): Promise<Restful> => {
   try {
-    const users = await Action.Retrieve__Page(
+    const appliers = await Action.Retrieve__Page(
       (page - 1) * capacity,
       Number(capacity),
       sortBy,
       Boolean(descending)
     );
     const rowsNumber = await Action.Retrieve__Count();
-    users[0] = { ...(<any>users[0]?.toJSON()), rowsNumber };
-    return new Restful(0, '查询成功', users);
+    return new Restful(0, '查询成功', { appliers, rowsNumber });
   } catch (e) {
     return new Restful(99, `查询失败, ${e.message}`);
   }
 };
 
 /**
- *
+ * 遍历全部
  */
 const Retrieve__All = async (): Promise<Restful> => {
   try {
