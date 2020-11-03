@@ -152,9 +152,9 @@
     methods: {
       ...mapMutations({ setBrightness: 'setBrightness', setDark: 'setDark' }),
       ...mapActions({
-        retrieve: 'api/retrieve',
-        edit: 'api/edit',
-        remove: 'api/remove'
+        retrieve: 'applier/retrieve',
+        edit: 'applier/edit',
+        remove: 'applier/remove'
       }),
       notify(message, colorIndx = 0) {
         const color = ['positive', 'warning', 'error'];

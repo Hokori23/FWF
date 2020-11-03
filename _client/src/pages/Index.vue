@@ -131,7 +131,7 @@
               :style="`height:${$q.screen.gt.md ? '100px' : '70px'};`"
             />
             <p>
-              FWF 是一个专注于Web技术的工作室( 隶属于404工作室，非院校社团 )
+              FWF 是一个专注于Web技术的工作室( 隶属于404俱乐部，非院校社团 )
               ，致力于打造良好的技术交流氛围。
             </p>
             <p>
@@ -249,7 +249,7 @@
       };
     },
     methods: {
-      ...mapActions({ apply: 'api/apply' }),
+      ...mapActions({ apply: 'applier/apply' }),
       ...mapMutations({ setBrightness: 'setBrightness', setDark: 'setDark' }),
       tabKeyDictionary(key) {
         const dictionary = {

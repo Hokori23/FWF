@@ -71,11 +71,18 @@ module.exports = function(/* ctx */) {
       port: 8080,
       open: true, // opens browser window automatically
       proxy: {
-        '/api': {
-          target: "http://localhost:8003/api",
+        '/applier': {
+          target: "http://localhost:8003/applier",
           changeOrigin: true,
           pathRewrite: {
-            '^/api': ''
+            '^/applier': ''
+          }
+        },
+        '/record': {
+          target: "http://localhost:8003/record",
+          changeOrigin: true,
+          pathRewrite: {
+            '^/record': ''
           }
         }
       }

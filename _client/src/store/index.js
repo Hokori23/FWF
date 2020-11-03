@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import api from './api';
+import applier from './applier';
 
 Vue.use(Vuex);
 
@@ -21,7 +21,7 @@ const warningColor = '#F2C037';
 export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      api
+      applier
     },
     state: {
       brightness: 100,

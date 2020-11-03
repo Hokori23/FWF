@@ -1,10 +1,8 @@
 import axios from 'axios';
-console.log(`开发环境 - ${process.env.DEV ? 'devlopment' : 'production'}`);
-if (process.env.DEV) {
-  axios.defaults.baseURL = '/api';
-} else {
-  axios.defaults.baseURL = 'https://fwf.hokori.online/api';
-}
+console.log(`当前环境 - ${process.env.DEV ? 'devlopment' : 'production'}`);
+const API = axios.create({
+  baseURL: process.env.DEV ? '/applier' : 'https://fwf.hokori.online/applier'
+});
 /**
  * @path /apply
  * @param { Applier } applier
@@ -21,8 +19,7 @@ if (process.env.DEV) {
  */
 const apply = ({ commit, state }, payload) => {
   return new Promise((resolve, reject) => {
-    axios
-      .post('/apply', payload)
+    API.post('/apply', payload)
       .then((res) => {
         resolve(res.data);
       })
@@ -39,8 +36,7 @@ const apply = ({ commit, state }, payload) => {
  */
 const edit = ({ commit, state }, payload) => {
   return new Promise((resolve, reject) => {
-    axios
-      .post('/edit', payload)
+    API.post('/edit', payload)
       .then((res) => {
         resolve(res.data);
       })
@@ -59,10 +55,9 @@ const edit = ({ commit, state }, payload) => {
  */
 const retrieve = ({ commit, state }, params) => {
   return new Promise((resolve, reject) => {
-    axios
-      .get('/retrieve', {
-        params
-      })
+    API.get('/retrieve', {
+      params
+    })
       .then((res) => {
         resolve(res.data);
       })
@@ -78,8 +73,7 @@ const retrieve = ({ commit, state }, params) => {
  */
 const remove = ({ commit, state }, payload) => {
   return new Promise((resolve, reject) => {
-    axios
-      .post('/delete', payload)
+    API.post('/delete', payload)
       .then((res) => {
         resolve(res.data);
       })
