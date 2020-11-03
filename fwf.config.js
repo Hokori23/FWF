@@ -111,7 +111,7 @@ const config = {
     maxTryCount: 3,
     host: 'smtp.163.com',
     port: 465,
-    subject: 'FWF工作室申请邮件',
+    subject: '你有一封来自FWF工作室的邮件',
     auth: {
       user: 'wefound404_fwf@163.com',
       pass: ''
