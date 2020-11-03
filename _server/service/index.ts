@@ -1,6 +1,4 @@
 import ApplierService from './ApplierService';
+import InterviewRecordService from './InterviewRecordService';
 
-export { ApplierService };
-export default {
-  Applier: ApplierService
-};
+export { ApplierService, InterviewRecordService };
