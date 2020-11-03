@@ -6,7 +6,6 @@ moment.locale('zh-cn');
 
 // 通用设置
 const MAILER_OPTIONS = mailerConfig;
-
 // 接收邮件的邮箱列表
 const ACCEPTERS = [
   {
@@ -26,8 +25,17 @@ const ACCEPTERS = [
       name: '荍荍i',
       address: '675061026@qq.com'
     }
+  },
+  {
+    to: {
+      name: 'Uni',
+      address: '13670210824@163.com'
+    }
   }
 ];
+if (process.env.NODE_ENV === 'development') {
+  ACCEPTERS.splice(1, ACCEPTERS.length - 1);
+}
 
 /**
  *
