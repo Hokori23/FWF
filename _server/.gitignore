@@ -70,6 +70,7 @@ routes/**/*.js
 service/**/*.js
 vo/**/*.js
 mailer/**/*.js
+static/**/*.js
 app.js
 
 # secure files
