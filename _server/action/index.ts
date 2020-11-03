@@ -1,6 +1,8 @@
 import ApplierAction from './ApplierAction';
+import InterviewRecordAction from './InterviewRecordAction';
 
-export { ApplierAction };
+export { ApplierAction, InterviewRecordAction };
 export default {
-  Applier: ApplierAction
+  Applier: ApplierAction,
+  InterviewRecord: InterviewRecordAction
 };
