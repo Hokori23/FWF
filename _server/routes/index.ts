@@ -1,3 +1,4 @@
 import Applier from './Applier';
+import InterviewRecord from './InterviewRecord';
 
-export { Applier };
+export { Applier, InterviewRecord };
